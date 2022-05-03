@@ -1,0 +1,29 @@
+{
+  "name": "yelp-clone",
+  "version": "1.0.0",
+  "description": "PERN Stack yelp clone",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ananyakaushik48/yelp-clone-PERN.git"
+  },
+  "author": "Ananya Kaushik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ananyakaushik48/yelp-clone-PERN/issues"
+  },
+  "homepage": "https://github.com/ananyakaushik48/yelp-clone-PERN#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
