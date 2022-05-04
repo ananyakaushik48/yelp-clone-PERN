@@ -4,17 +4,23 @@ import Home from './routes/Home';
 import RestaurantDetailPage from './routes/RestaurantDetailPage';
 import UpdatePage from './routes/UpdatePage';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import { RestaurantsContextProvider } from './context/RestaurantsContext';
+//importing context api
 function App() {
   
   return (
-    <div><Router>
-    <Routes>
-    <Route path='/' element={<Home/>}/>
-    <Route path='/restaurants/:id/update' element={<UpdatePage/>}/>
-    <Route path='/restaurants/:id' element={<RestaurantDetailPage/>}/>
-    </Routes>
-</Router></div>
+  <RestaurantsContextProvider>
+    <div className='container'>
+      <Router>
+        <Routes>
+          <Route exact path='/' element={<Home/>}/>
+          <Route exact path='/restaurants/:id/update' element={<UpdatePage/>}/>
+          <Route exact path='/restaurants/:id' element={<RestaurantDetailPage/>}/>
+        </Routes>
+      </Router>
+    </div>
+  </RestaurantsContextProvider>
+    
   )
 }
 

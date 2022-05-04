@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const port = process.env.PORT || 3006;
+const cors = require('cors');
 const app = express();
+app.use(cors());
 const db = require('./db');
 // now we have access to pool.query from pg
 const morgan = require('morgan');
@@ -17,7 +19,7 @@ app.use(express.json())
 app.get('/api/v1/restaurants', async (req,res) => {
     try{
     const results = await db.query("select * from restaurants")
-    console.log(results);
+    // console.log(results);
     res.status(200).json({
         status: "success",
         results: results.rows.length,
@@ -53,7 +55,7 @@ app.post('/api/v1/restaurants', async (req,res) => {
     try {
     const results = await db.query("insert into restaurants (name,location,price_range) values ($1, $2, $3) returning *",[req.body.name, req.body.location, req.body.price_range])
     // the returning * at the end of the insert query returns all the data postgres just added to the database
-    console.log(results)
+    // console.log(results)
     res.status(201).json({
         status: "success",
         data: {
@@ -68,7 +70,7 @@ app.post('/api/v1/restaurants', async (req,res) => {
 app.put('/api/v1/restaurants/:id', async (req,res) => {
     try {
     const results = await db.query("UPDATE restaurants SET name=$1, location= $2, price_range=$3 where id=$4 returning *", [req.body.name, req.body.location, req.body.price_range, req.params.id])
-    console.log(results.rows[0]);
+    // console.log(results.rows[0]);
     res.status(200).json({
         status: "success",
         data: {
@@ -86,7 +88,7 @@ app.delete('/api/v1/restaurants/:id', async (req, res) => {
     // 204 is successful delete operation response in HTTP
     try {
         const results = await db.query("delete from restaurants where id = $1 returning *", [req.params.id]);  
-        console.log(results.rows[0]); // returns the deleted value.
+        // console.log(results.rows[0]); // returns the deleted value.
         res.status(204).json({
         status: "success"
     });   
